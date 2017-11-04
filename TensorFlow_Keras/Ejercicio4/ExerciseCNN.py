@@ -39,6 +39,25 @@ y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
 model = Sequential()
+model.add(Conv2D(6, kernel_size=(5,5), input_shape=input_shape, padding='same', activation='tanh'))
+
+model.add(MaxPooling2D(pool_size=(2,2)))
+
+model.add(Conv2D(16, kernel_size=(5,5), activation='tanh'))
+
+model.add(MaxPooling2D(pool_size=(2,2)))
+
+model.add(Flatten())
+
+model.add(Dense(120, activation='tanh'))
+
+
+model.add(Dense(84, activation='tanh'))
+
+
+model.add(Dense(10, activation='softmax'))
+
+
 # You must create a neural netowork with:
 # A first hidden convolutional layer of 32 neurons, relu activation and window size 3x3
 # A second hidden convolutional layer of 64 neurons, relu activation and window size 3x3
@@ -47,8 +66,6 @@ model = Sequential()
 # A last dense hidden layer of 128 neurons and relu activation
 # A dropout with regularization 0.5
 # A dense output layer          
-
-...
 
 
 model.compile(loss=keras.losses.categorical_crossentropy,
